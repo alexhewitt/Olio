@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  likes: 1
+  by_user: false
+  views: 1
+  impressions: 1
+
+two:
+  likes: 1
+  by_user: false
+  views: 1
+  impressions: 1
