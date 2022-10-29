@@ -45,7 +45,8 @@ olio_object.each do |article|
       town: article['location']['town'],
       country: article['location']['country'],
       location: GEOFACTORY.point(article['location']['longitude'], article['location']['latitude']),
-      locatable_id: article['id']
+      locatable_id: article['id'],
+      locatable_type: 'Article'
     }
   )
 
@@ -80,6 +81,8 @@ olio_object.each do |article|
   puts 'adding user location...'
   Address.find_or_create_by(locatable_id: article['user']['id']) do |l|
     l.location = GEOFACTORY.point(article['user']['location']['longitude'], article['user']['location']['latitude'])
+    l.locatable_id = article['user']['id']
+    l.locatable_type = 'User'
   end
   count += 1
 end
