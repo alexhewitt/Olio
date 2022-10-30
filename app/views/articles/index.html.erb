@@ -42,7 +42,7 @@
                                   <h3><%= article.user.first_name %></h3>
                                 </div>
                                 <div class="mui-col-md-4">
-                                  <h3 class="rating"> &#11088; <%= article.user.rating['rating'] %></h3>
+                                  <h3 class="rating"> &#11088; <%= article.user.rating['rating'] || "no rating" %> </h3>
                                 </div>
                               </div>
                               <div class="mui-row user">
@@ -54,6 +54,22 @@
                                   <h3> &#128065; <%= article.reaction.impressions %></h3>
                                 </div>
                                 <div class="mui-col-md-2"></div>
+                              </div>
+                              <div class="mui-row user">
+                                <div class="mui-col-md-4"></div>
+                                <div class="mui-col-md-2 user" style="float:right">
+                                    <% if article.reaction.by_user == true %>
+                                      <button class="mui-btn mui-btn--fab" style="box-shadow:none" disabled>
+                                        &#10084;&#65039;
+                                      </button>
+                                    <% else %>
+                                      <form>
+                                        <%= link_to "&#9825;".html_safe, like_path(id: article.id), :class => 'mui-btn mui-btn--fab', :style => "box-shadow:none" %>
+                                      </form>
+                                    <% end %>
+                                  <p> <%= article.reaction.likes %></p>
+                                </div>
+                                <div class="mui-col-md-4"></div>
                               </div>
                             </div>
                           </td>
