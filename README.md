@@ -2,18 +2,18 @@
 
 Hello and welcome to this simple Olio article viewer application
 
-* Built in ruby version 3.0.0 and Rails version 6.1.7 with a Postgres Database
+* Built in Ruby 3.0.0, Rails 6.1.7 and Postgres 14.5
 
 * To get started run the following commands from your terminal
 
-### MacOS
+### MacOS - Basic Setup
 
 - Install Homebrew
 
 https://brew.sh/
 ^ Paste and copy snippet into Terminal and return.
 
-- Install rbenv
+- Install rbenv ruby manager
 
 ```
 $ brew install rbenv
@@ -44,8 +44,6 @@ $ gem install bundler
 $ rbenv rehash
 ```
 
-- Clone repo
-
 - Install Postgresql
 
 ```
@@ -56,7 +54,7 @@ $ brew services start postgresql
 - Setup database
 
 ```
-$ rails db:create db:migrate
+$ rails db:create db:migrate db:seed
 ```
 
 - Serve Rails

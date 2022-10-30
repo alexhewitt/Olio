@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.text :roles, array: true, default: []
       t.json :rating
       t.json :verifications
-      t.text :current_avatar, array: true, default: []
+      t.string :current_avatar
       t.timestamps
     end
   end

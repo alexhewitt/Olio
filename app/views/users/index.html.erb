@@ -20,9 +20,9 @@
       <tr>
         <td><%= user.first_name %></td>
         <td><%= user.roles %></td>
-        <td><%= user.location %></td>
+        <td><%= user.address %></td>
         <td><%= user.rating %></td>
-        <td><%= user.verification %></td>
+        <td><%= user.verifications %></td>
         <td><%= user.current_avatar %></td>
         <td><%= link_to 'Show', user %></td>
         <td><%= link_to 'Edit', edit_user_path(user) %></td>
@@ -33,5 +33,3 @@
 </table>
 
 <br>
-
-<%= link_to 'New User', new_user_path %>

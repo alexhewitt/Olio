@@ -7,7 +7,7 @@ class CreateArticles < ActiveRecord::Migration[6.1]
       t.string :status
       t.boolean :is_owner
       t.string :collection_notes
-      t.text :images, array: true, default: []
+      t.string :image
       t.integer :user_id
       t.timestamps
     end

@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 2022_10_29_182224) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "locatable_type"
+    t.float "distance"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -33,7 +34,7 @@ ActiveRecord::Schema.define(version: 2022_10_29_182224) do
     t.string "status"
     t.boolean "is_owner"
     t.string "collection_notes"
-    t.text "images", default: [], array: true
+    t.string "image"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -54,7 +55,7 @@ ActiveRecord::Schema.define(version: 2022_10_29_182224) do
     t.text "roles", default: [], array: true
     t.json "rating"
     t.json "verifications"
-    t.text "current_avatar", default: [], array: true
+    t.string "current_avatar"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
