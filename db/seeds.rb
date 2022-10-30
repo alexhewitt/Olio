@@ -13,7 +13,6 @@ Address.destroy_all
 Value.destroy_all
 
 # Thought I'd use Geofactory at this point to create a postgis location point.
-# Later decided to keep the application simple and just use the distance provided in the view.
 GEOFACTORY = RGeo::ActiveRecord::SpatialFactoryStore.instance.factory(geo_type: 'st_point')
 
 # Creates the Olio object
