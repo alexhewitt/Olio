@@ -1,5 +1,10 @@
 # frozen_string_literal: true
 
+require 'net/http'
+require 'json'
+
+##
+# Controller Class for handling endpoints to "/articles"
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
 

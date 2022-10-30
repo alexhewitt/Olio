@@ -1,6 +1,6 @@
 # README
 
-Hello and welcome to this simple Olio article viewer application
+Hello and welcome to my Olio article viewer application. Get started with the instructions below.
 
 * Built in Ruby 3.0.0, Rails 6.1.7 and Postgres 14.5
 
@@ -13,7 +13,7 @@ Hello and welcome to this simple Olio article viewer application
 https://brew.sh/
 ^ Paste and copy snippet into Terminal and return.
 
-- Install rbenv ruby manager
+- Install rbenv ruby manager ( or use the ruby manager of your choice )
 
 ```
 $ brew install rbenv
@@ -44,18 +44,38 @@ $ gem install bundler
 $ rbenv rehash
 ```
 
-- Install Postgresql
+- Install Postgresql & Postgis
 
 ```
 $ brew install postgresql
+
+$ brew install postgis
+
 $ brew services start postgresql
 ```
+
+- Install bundler gem
+
+```
+$ gem install bundler:2.2.3
+```
+
+
+- Download Gemset
+
+```
+$ bundle install
+```
+
 
 - Setup database
 
 ```
 $ rails db:create db:migrate db:seed
 ```
+
+### Database issues usually relate to postgis. 
+## To remedy any issues please try installing the postgis extension in your postgres database first.
 
 - Serve Rails
 

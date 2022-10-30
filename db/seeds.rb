@@ -2,6 +2,8 @@
 
 # This file sets up the local database. Pulling the JSON from the S3 bucket and populating the tables.
 
+# I started here so that I could get started on the view quickly.
+
 require 'net/http'
 require 'json'
 
@@ -10,8 +12,11 @@ User.destroy_all
 Address.destroy_all
 Value.destroy_all
 
+# Thought I'd use Geofactory at this point to create a postgis location point.
+# Later decided to keep the application simple and just use the distance provided in the view.
 GEOFACTORY = RGeo::ActiveRecord::SpatialFactoryStore.instance.factory(geo_type: 'st_point')
 
+# Creates the Olio object
 def olio_object
   url = 'https://s3-eu-west-1.amazonaws.com/olio-staging-images/developer/test-articles-v4.json'
   uri = URI(url)
@@ -72,7 +77,7 @@ olio_object.each do |article|
     r.views       = article['reactions']['views']
     r.impressions = article['reactions']['impressions']
     r.article_id  = article['id']
-    r.created_at  = Time.now
+    r.updated_at  = Time.now
   end
 
   puts "Creating article #{count} user..."
@@ -82,7 +87,7 @@ olio_object.each do |article|
     u.roles          = article['user']['roles']
     u.rating         = article['user']['rating']
     u.verifications  = article['user']['verifications']
-    u.created_at     = Time.now
+    u.updated_at     = Time.now
   end
 
   puts 'adding user location...'
@@ -90,7 +95,7 @@ olio_object.each do |article|
     l.location       = GEOFACTORY.point(article['user']['location']['longitude'], article['user']['location']['latitude'])
     l.locatable_id   = article['user']['id']
     l.locatable_type = 'User'
-    l.created_at     = Time.now
+    l.updated_at     = Time.now
   end
   count += 1
 end
