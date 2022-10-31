@@ -67,6 +67,16 @@ class ArticlesController < ApplicationController
   # Clunky and lacks error handling.
   def get_page_data
     olio_object.each do |article|
+      puts "adding article user..."
+      User.find_or_create_by(id: article['user']['id']) do |u|
+        u.first_name     = article['user']['first_name']
+        u.current_avatar = article['user']['current_avatar']['small']
+        u.roles          = article['user']['roles']
+        u.rating         = article['user']['rating']
+        u.verifications  = article['user']['verifications']
+        u.updated_at     = Time.now
+      end
+
       puts 'updating articles...'
       @article = Article.find_or_create_by(id: article['id']) do |a|
                   a.id                = article['id']
@@ -100,16 +110,6 @@ class ArticlesController < ApplicationController
           r.impressions = article['reactions']['impressions']
           r.article_id  = article['id']
           r.updated_at  = Time.now
-        end
-      
-        puts "adding article user..."
-        User.find_or_create_by(id: article['user']['id']) do |u|
-          u.first_name     = article['user']['first_name']
-          u.current_avatar = article['user']['current_avatar']['small']
-          u.roles          = article['user']['roles']
-          u.rating         = article['user']['rating']
-          u.verifications  = article['user']['verifications']
-          u.updated_at     = Time.now
         end
 
         # Closer inspection of the records in the view raised questions about "is_owner": false and user "roles"

@@ -28,7 +28,16 @@ count = 1
 puts 'Creating articles...'
 
 olio_object.each do |article|
-  puts count
+  puts "Creating article #{count} user..."
+  User.find_or_create_by(id: article['user']['id']) do |u|
+    u.first_name     = article['user']['first_name']
+    u.current_avatar = article['user']['current_avatar']['small']
+    u.roles          = article['user']['roles']
+    u.rating         = article['user']['rating']
+    u.verifications  = article['user']['verifications']
+    u.updated_at     = Time.now
+  end
+  
   puts "Creating article #{count}..."
   Article.create(
     {
@@ -77,16 +86,6 @@ olio_object.each do |article|
     r.impressions = article['reactions']['impressions']
     r.article_id  = article['id']
     r.updated_at  = Time.now
-  end
-
-  puts "Creating article #{count} user..."
-  User.find_or_create_by(id: article['user']['id']) do |u|
-    u.first_name     = article['user']['first_name']
-    u.current_avatar = article['user']['current_avatar']['small']
-    u.roles          = article['user']['roles']
-    u.rating         = article['user']['rating']
-    u.verifications  = article['user']['verifications']
-    u.updated_at     = Time.now
   end
 
   puts 'adding user location...'
