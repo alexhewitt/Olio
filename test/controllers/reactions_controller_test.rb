@@ -2,14 +2,13 @@ require "test_helper"
 
 class ReactionsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @article = Article.create!(id: 1)
-    @reaction = Reaction.create!(article_id: @article.id)
+    @user = User.create!(id: 1)
+    @article = Article.create!(id: 1, user_id: @user.id)
+    @reaction = Reaction.create!(article_id: @article.id, likes: 0)
   end
 
   test "should post like" do
-    puts @article.inspect, "@article"
-    puts @reaction.inspect, "@reaction"
-    get like_path(@reaction.id)
-    assert_response :success
+    get like_path(id: @reaction.id)
+    assert_redirected_to articles_path
   end
 end

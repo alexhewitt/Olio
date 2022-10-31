@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
 class Reaction < ApplicationRecord
-  has_one :article
+  belongs_to :article
 end

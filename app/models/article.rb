@@ -2,14 +2,13 @@
 
 # Article record. Returns article record and required associations
 class Article < ApplicationRecord
-  has_one :user
+  belongs_to :user
   has_one :address, as: :locatable
   has_one :reaction
   has_one :value
 
   # Returns the author of the article. Assumes there is one.
   def user
-    puts user_id
     User.find(user_id)
   end
 
