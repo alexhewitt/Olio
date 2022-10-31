@@ -3,13 +3,14 @@
 require 'net/http'
 require 'json'
 
+# Geofactory is not actually used in the app but I felt we should create the user location record anyway to enable further integration.
 GEOFACTORY = RGeo::ActiveRecord::SpatialFactoryStore.instance.factory(geo_type: 'st_point')
 
 ##
 # Controller Class for handling endpoints to "/articles"
 class ArticlesController < ApplicationController
   before_action :set_article, only: %i[show edit update destroy]
-  before_action :get_page_data, only: %i[index]
+  before_action :get_page_data, only: %i[index], unless: -> { Rails.env="test" }
 
   # GET /articles or /articles.json
   def index
@@ -62,7 +63,8 @@ class ArticlesController < ApplicationController
     JSON.parse(response)
   end
 
-  # Set as before index action to get latest data while persisting local likes if data is updated on page reload.
+  # Set as before_action on index to get latest data while persisting local likes if data is updated on page reload.
+  # Clunky and lacks error handling.
   def get_page_data
     olio_object.each do |article|
       puts 'updating articles...'
@@ -100,7 +102,7 @@ class ArticlesController < ApplicationController
           r.updated_at  = Time.now
         end
       
-        puts "Creating article user..."
+        puts "adding article user..."
         User.find_or_create_by(id: article['user']['id']) do |u|
           u.first_name     = article['user']['first_name']
           u.current_avatar = article['user']['current_avatar']['small']

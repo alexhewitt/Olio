@@ -1,25 +1,21 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  title: MyString
-  description: MyText
-  section: MyString
-  location: 
-  value: 
-  status: MyString
-  reactions: 
-  is_owner: false
-  collection_notes: MyString
-  images: MyText
+# one:
+#   title: MyString
+#   description: MyText
+#   section: MyString
+#   status: MyString
+#   is_owner: false
+#   collection_notes: MyString
+#   image: MyString
+#   user_id: MyInteger
 
-two:
-  title: MyString
-  description: MyText
-  section: MyString
-  location: 
-  value: 
-  status: MyString
-  reactions: 
-  is_owner: false
-  collection_notes: MyString
-  images: MyText
+# two:
+#   title: MyString
+#   description: MyText
+#   section: MyString
+#   status: MyString
+#   is_owner: false
+#   collection_notes: MyString
+#   image: MyString
+#   user_id: MyInteger

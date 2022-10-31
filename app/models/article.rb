@@ -9,6 +9,7 @@ class Article < ApplicationRecord
 
   # Returns the author of the article. Assumes there is one.
   def user
+    puts user_id
     User.find(user_id)
   end
 

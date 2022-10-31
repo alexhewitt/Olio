@@ -1,8 +1,10 @@
 # README
 
-Hello and welcome to my Olio article viewer application. Get started with the instructions below.
+Hello and welcome to my basic Olio article viewer application. Get started with the instructions below.
 
 * Built in Ruby 3.0.0, Rails 6.1.7 and Postgres 14.5
+
+* Tested using Minitest and Cypress
 
 * To get started run the following commands from your terminal
 
