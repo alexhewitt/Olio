@@ -73,7 +73,7 @@ $ bundle install
 - Setup database
 
 ```
-$ rails db:create db:migrate db:seed
+$ rails db:drop db:create db:migrate db:seed
 ```
 
 ### Database issues usually relate to postgis. 
